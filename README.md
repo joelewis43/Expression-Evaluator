@@ -1,7 +1,5 @@
 # Expression Evaluator
 
-Prompt
-
 Write a problem to evaluate arithmetic expressions. Input will be test expression strings.
 
 The solution should
