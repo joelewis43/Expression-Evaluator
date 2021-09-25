@@ -7,7 +7,7 @@ namespace ExpressionEvaluator
         static void Main(string[] args)
         {
             ExpressionSolver oEvaluator = new ExpressionSolver();
-            // oEvaluator.Evaluate(args);
+            oEvaluator.Evaluate(args);
         }
     }
 }

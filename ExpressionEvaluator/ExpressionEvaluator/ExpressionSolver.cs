@@ -7,7 +7,7 @@ namespace ExpressionEvaluator
     class ExpressionSolver
     {
         private string InputExpression;
-        private char[] ValidOperators = new char[] { '(', ')', '+', '*'};
+        private List<char> ValidOperators = new List<char> { '(', ')', '+', '*'};
 
 
         public ExpressionSolver()
@@ -53,10 +53,14 @@ namespace ExpressionEvaluator
                 InputExpression = String.Join(" ", args);
             }
 
+            #if DEBUG
+            Console.WriteLine("Processing input: " + InputExpression);
+            #endif
+
             // validate
             // no spaces between numbers (missing operator)
             // parens are opened and closed as expected
-            // all operators are recognized
+            // all operators are recognized (no letters or invalid symbols)
 
             #region Parentheses Check
             int parenCount = 0;
@@ -95,6 +99,9 @@ namespace ExpressionEvaluator
                  * (5 + 2) * (2 1)	=>  5 + 2  *  2 1	=> 5,+,2,*,2,1
                  */
 
+                Console.WriteLine("NEED TO COME BACK AND ADDRESS THE ISSUE OF AN OPERATOR AND NUMBER NOT BEING SEPARATED BY A SPACE");
+                // ex 12 + 3 +5
+
                 if (Int32.TryParse(s, out temp))
                 {
                     if (lastCharWasInt)
@@ -107,6 +114,18 @@ namespace ExpressionEvaluator
                 else
                 {
                     lastCharWasInt = false;
+                }
+            }
+            #endregion
+
+            #region Unrecognized Operators Check
+            foreach (char c in InputExpression)
+            {
+                if (!char.IsDigit(c) && !c.Equals(' ') && !ValidOperators.Contains(c))
+                {
+                    errorMsg = "Invalid input! Input contains an unrecognized operator \'" + c + "\'. Please double check the input.";
+                    errorMsg += "\n\tValid operators: " + String.Join(" ", ValidOperators);
+                    return false;
                 }
             }
             #endregion

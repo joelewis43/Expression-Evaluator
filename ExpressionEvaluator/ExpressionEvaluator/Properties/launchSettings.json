@@ -2,7 +2,7 @@
   "profiles": {
     "ExpressionEvaluator": {
       "commandName": "Project",
-      "commandLineArgs": "\"5 + 12 * (3 + 4)\""
+      "commandLineArgs": "(5 + 2) * (2 + 1)"
     }
   }
 }
