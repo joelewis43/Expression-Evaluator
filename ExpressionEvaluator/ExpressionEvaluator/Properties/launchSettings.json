@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExpressionEvaluator": {
+      "commandName": "Project",
+      "commandLineArgs": "\"5 + 12 * (3 + 4)\""
+    }
+  }
+}
