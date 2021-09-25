@@ -94,6 +94,7 @@ namespace ExpressionEvaluator
                 /*
                  * Examples
                  * Input            => remove parens    => final split
+                 * 5+2 1            => 5+2 1            => 5+2,1
                  * 5 + 2 1          => 5 + 2 1		    => 5,+,2,1
                  * (5 + 2) 1	    =>  5 + 2  1		=> 5,+,2,1
                  * (5 + 2) * (2 1)	=>  5 + 2  *  2 1	=> 5,+,2,*,2,1
