@@ -1,4 +1,5 @@
 ﻿using System;
+using Evaluator;
 
 namespace ExpressionEvaluator
 {
@@ -6,8 +7,9 @@ namespace ExpressionEvaluator
     {
         static void Main(string[] args)
         {
+            int result;
             ExpressionSolver oEvaluator = new ExpressionSolver();
-            oEvaluator.Evaluate(args);
+            oEvaluator.Evaluate(args, out result);
         }
     }
 }
