@@ -1,0 +1,17 @@
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestFramework.exe
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestFramework.deps.json
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestFramework.runtimeconfig.json
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestFramework.runtimeconfig.dev.json
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestFramework.dll
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestFramework.pdb
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\Evaluator.dll
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\Evaluator.pdb
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.csprojAssemblyReference.cache
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.AssemblyInfoInputs.cache
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.AssemblyInfo.cs
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.csproj.CoreCompileInputs.cache
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.csproj.CopyComplete
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.dll
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.pdb
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\obj\Debug\netcoreapp3.1\TestFramework.genruntimeconfig.cache
+C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\TestFramework\bin\Debug\netcoreapp3.1\TestInputs.txt

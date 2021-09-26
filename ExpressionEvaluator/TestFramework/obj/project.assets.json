@@ -31,11 +31,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JoeLe\\Desktop\\nLIGHT\\Expression-Evaluator\\ExpressionEvaluator\\ExpressionEvaluator\\ExpressionEvaluator.csproj",
-      "projectName": "ExpressionEvaluator",
-      "projectPath": "C:\\Users\\JoeLe\\Desktop\\nLIGHT\\Expression-Evaluator\\ExpressionEvaluator\\ExpressionEvaluator\\ExpressionEvaluator.csproj",
+      "projectUniqueName": "C:\\Users\\JoeLe\\Desktop\\nLIGHT\\Expression-Evaluator\\ExpressionEvaluator\\TestFramework\\TestFramework.csproj",
+      "projectName": "TestFramework",
+      "projectPath": "C:\\Users\\JoeLe\\Desktop\\nLIGHT\\Expression-Evaluator\\ExpressionEvaluator\\TestFramework\\TestFramework.csproj",
       "packagesPath": "C:\\Users\\JoeLe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JoeLe\\Desktop\\nLIGHT\\Expression-Evaluator\\ExpressionEvaluator\\ExpressionEvaluator\\obj\\",
+      "outputPath": "C:\\Users\\JoeLe\\Desktop\\nLIGHT\\Expression-Evaluator\\ExpressionEvaluator\\TestFramework\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\JoeLe\\AppData\\Roaming\\NuGet\\NuGet.Config",
