@@ -1,6 +1,0 @@
-C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\Evaluator\bin\Debug\Evaluator.dll
-C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\Evaluator\bin\Debug\Evaluator.pdb
-C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\Evaluator\obj\Debug\Evaluator.csproj.CoreCompileInputs.cache
-C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\Evaluator\obj\Debug\Evaluator.dll
-C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\Evaluator\obj\Debug\Evaluator.pdb
-C:\Users\JoeLe\Desktop\nLIGHT\Expression-Evaluator\ExpressionEvaluator\Evaluator\obj\Debug\Evaluator.csprojAssemblyReference.cache
