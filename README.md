@@ -9,3 +9,10 @@ The solution should
 - Not use the "Shunting Yard" algorithm
 - Contain a testing framework to validate the solution is functioning as desired
 
+Additional points
+- How can the test approach be incorporated into a CI system
+- Consider all error situations in validation and testing
+- Documentation: comments when things are not obvious
+
+README
+- Provide instructions on how to build and run the solution
