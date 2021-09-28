@@ -108,8 +108,8 @@ namespace Evaluator
             }
             #endregion
 
-            #region Missing Operator Check
-            // If two numbers occur one after the other, an operator is missing
+            #region Missing Operator/Number Check
+            // If two numbers, or operators, occur one after the other, something is missing
             int temp;
             bool lastCharWasInt = false;
 
@@ -127,7 +127,7 @@ namespace Evaluator
             {
                 if (Int32.TryParse(s, out temp))
                 {
-                    if (lastCharWasInt)
+                    if (lastCharWasInt) // current and last indices contain a number
                     {
                         errorMsg = "Invalid input! An operator is missing. Please double check the input.";
                         return false;
@@ -137,6 +137,11 @@ namespace Evaluator
                 else if (s.Equals("(") || s.Equals(")")) { /* Ignore parentheses */ }
                 else
                 {
+                    if (!lastCharWasInt) // current and last indices contain an operator
+                    {
+                        errorMsg = "Invalid input! A number is missing. Please double check the input.";
+                        return false;
+                    }
                     lastCharWasInt = false;
                 }
             }
