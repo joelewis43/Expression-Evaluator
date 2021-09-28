@@ -21,7 +21,6 @@ namespace Evaluator.Evaluation_Steps
 
             while (i < expression.Count)
             {
-
                 if (ValidOperators.Contains(expression[i]))
                 {
                     val = PerformOperation(expression, i);

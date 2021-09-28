@@ -17,5 +17,9 @@ namespace Evaluator
 
         abstract public void Evaluate(List<string> expression);
         abstract protected string PerformOperation(List<string> oper, int operIndex);
+        public List<string> GetValidOperators()
+        {
+            return ValidOperators;
+        }
     }
 }

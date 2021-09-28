@@ -8,7 +8,7 @@ namespace Evaluator
 {
     public class ExpressionSolver
     {
-        private List<char> ValidOperators = new List<char> { '(', ')', '+', '*' };
+        private List<string> ValidOperators;
         private List<EvaluationStep> EvaluationSteps;
         private List<string> Expression;
 
@@ -20,6 +20,8 @@ namespace Evaluator
             // add a step in the order you want it to be processed (i.e. add multiplcation before addition)
             EvaluationSteps.Add(new MultiplicationStep());
             EvaluationSteps.Add(new AdditionStep());
+
+            GetValidOperators();
         }
 
         public bool Evaluate(string[] args, out int result)
@@ -38,16 +40,14 @@ namespace Evaluator
                 return false;
             }
 
-            // now that we have valid input, we can evaluate the expression
-            result = ProcessExpression();
+            result = ProcessExpression(Expression);
 
             return true;
         }
 
         private bool ProcessInputs(string[] args, out string errorMsg)
         {
-            string inputExpression;
-            bool retValue;
+            string input;
 
             errorMsg = "";
 
@@ -58,24 +58,24 @@ namespace Evaluator
             }
             else if (args.Length == 1)
             {
-                inputExpression = args[0];
+                input = args[0];
             }
             else
             {
-                // Console app input is space separated, join with spaces between to recreate exact input
-                inputExpression = String.Join(" ", args);
+                // Join with spaces to prevent two numbers from being improperly joined
+                input = String.Join(" ", args);
             }
 
 #if DEBUG
-            Console.WriteLine("Processing input: " + inputExpression);
+            Console.WriteLine("Processing input: " + input);
 #endif
 
-            // validate
-            // no spaces between numbers (missing operator)
-            // parens are opened and closed as expected
-            // all operators are recognized (no letters or invalid symbols)
+            BuildExpressionList(input);
 
-            BuildExpressionList(inputExpression);
+            // validate
+            // parens are opened and closed as expected
+            // no spaces between numbers (missing operator)
+            // all operators are recognized (no letters or invalid symbols)
 
             #region Parentheses Check
             int parenCount = 0;
@@ -101,20 +101,19 @@ namespace Evaluator
             #region Missing Operator Check
             int temp;
             bool lastCharWasInt = false;
+
+            /*
+             * Looking for numbers in consecutive indices (ignoring parentheses)
+             * 
+             * Examples
+             * 5+2 1            => 5,+,2,1
+             * 5 + 2 1          => 5,+,2,1
+             * (5 + 2) 1	    => (,5,+,2,),1
+             * (5 + 2) * (2 1)	=> (,5,+,2,),*,(,2,1,)
+             */
+
             foreach (string s in Expression)
             {
-                // at this point, there is no whitespace in the input
-                // we are looking for numbers in consecutive indices (ignoring parentheses)
-
-                /*
-                 * Examples
-                 * Input            => final split
-                 * 5+2 1            => 5,+,2,1
-                 * 5 + 2 1          => 5,+,2,1
-                 * (5 + 2) 1	    => (,5,+,2,),1
-                 * (5 + 2) * (2 1)	=> (,5,+,2,),*,(,2,1,)
-                 */
-
                 if (Int32.TryParse(s, out temp))
                 {
                     if (lastCharWasInt)
@@ -133,11 +132,11 @@ namespace Evaluator
             #endregion
 
             #region Unrecognized Operators Check
-            foreach (char c in inputExpression)
+            foreach (string s in Expression)
             {
-                if (!char.IsDigit(c) && !c.Equals(' ') && !ValidOperators.Contains(c))
+                if (!Int32.TryParse(s, out temp) && !s.Equals(' ') && !ValidOperators.Contains(s))
                 {
-                    errorMsg = "Invalid input! Input contains an unrecognized operator \'" + c + "\'. Please double check the input.";
+                    errorMsg = "Invalid input! Input contains an unrecognized operator \'" + s + "\'. Please double check the input.";
                     errorMsg += "\n\tValid operators: " + String.Join(" ", ValidOperators);
                     return false;
                 }
@@ -146,7 +145,7 @@ namespace Evaluator
 
 #if DEBUG
             Console.WriteLine("Validation complete.");
-            Console.WriteLine(String.Format("Final input string: {0}", String.Join("", Expression)));
+            Console.WriteLine("Final input string: " + String.Join("", Expression));
 #endif
 
             return true;
@@ -154,9 +153,10 @@ namespace Evaluator
 
         private void BuildExpressionList(string input)
         {
-            // we know there is some input, we don't know what the input is
-            // all we want to do is create a list where each index is one value from the expression
+            // Create a list where each index is one value from the expression
             // { "(", "123", "+", "45", ")", "*", "3" }
+
+            // Can't simply input.Split(" ") because numbers and parenteses won't be space separated
 
             string currentNumber = String.Empty;
 
@@ -184,20 +184,65 @@ namespace Evaluator
             }
 
             if (!currentNumber.Equals(String.Empty)) Expression.Add(currentNumber);
-
-            Console.WriteLine(String.Join(", ", Expression));
         }
 
-        private int ProcessExpression()
+        private int ProcessExpression(List<string> expression)
         {
+            int first = 0, parenCount = 0, value = 0;
+
+#if DEBUG
+            Console.WriteLine("Processing " + String.Join("", expression));
+#endif
+
+            // walk through and identify paren sections
+            for (int i = 0; i < expression.Count; i++)
+            {
+                if (expression[i] == "(")
+                {
+                    if (parenCount == 0) first = i;
+
+                    parenCount++;
+                }
+                else if (expression[i] == ")")
+                {
+                    parenCount--;
+
+                    // once we have a fully closed paren section, evaluate it
+                    if (parenCount == 0)
+                    {
+                        value = ProcessExpression(expression.GetRange(first + 1, i - first - 1));
+
+                        // now the value has to replace everything from first-i
+                        expression[i] = value.ToString();
+
+                        for (int j = i-1; j >= first; j--) 
+                        {
+                            expression.RemoveAt(j);
+                            i--;
+                        }
+                    }
+                }
+            }
+
+            foreach (EvaluationStep es in EvaluationSteps)
+            {
+                es.Evaluate(expression);
+            }
 
 
 
-
-            return 0;
+            return Int32.Parse(expression[0]);
         }
 
+        private void GetValidOperators()
+        {
+            ValidOperators = new List<string>() { "(", ")" };
 
+            foreach (EvaluationStep es in EvaluationSteps)
+            {
+                ValidOperators.AddRange(es.GetValidOperators());
+            }
+        }
 
     }
 }

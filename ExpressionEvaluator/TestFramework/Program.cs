@@ -9,9 +9,9 @@ namespace TestFramework
     {
         static void Main(string[] args)
         {
-            TestEvaluationStep();
+            //TestEvaluationStep();
 
-            //TestExpressionEvaluator();
+            TestExpressionEvaluator();
 
         }
 
@@ -20,8 +20,8 @@ namespace TestFramework
             AdditionStep addTest = new AdditionStep();
             MultiplicationStep multTest = new MultiplicationStep();
 
-            List<string> addInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1" };
-            List<string> multInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1" };
+            List<string> addInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1", "*", "2", "+", "12", "*", "5", "+", "1" };
+            List<string> multInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1", "*", "2", "+", "12", "*", "5", "+", "1" };
 
 
             addTest.Evaluate(addInputs);
