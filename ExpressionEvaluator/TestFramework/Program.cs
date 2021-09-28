@@ -9,26 +9,7 @@ namespace TestFramework
     {
         static void Main(string[] args)
         {
-            //TestEvaluationStep();
-
             TestExpressionEvaluator();
-
-        }
-
-        static void TestEvaluationStep()
-        {
-            AdditionStep addTest = new AdditionStep();
-            MultiplicationStep multTest = new MultiplicationStep();
-
-            List<string> addInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1", "*", "2", "+", "12", "*", "5", "+", "1" };
-            List<string> multInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1", "*", "2", "+", "12", "*", "5", "+", "1" };
-
-
-            addTest.Evaluate(addInputs);
-            Console.WriteLine(String.Join(",", addInputs));
-
-            multTest.Evaluate(multInputs);
-            Console.WriteLine(String.Join(",", multInputs));
         }
 
         static void TestExpressionEvaluator()
@@ -74,5 +55,23 @@ namespace TestFramework
                 }
             }
         }
+
+        static void TestEvaluationStep()
+        {
+            AdditionStep addTest = new AdditionStep();
+            MultiplicationStep multTest = new MultiplicationStep();
+
+            List<string> addInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1", "*", "2", "+", "12", "*", "5", "+", "1" };
+            List<string> multInputs = new List<string> { "2", "+", "12", "*", "5", "+", "1", "*", "2", "+", "12", "*", "5", "+", "1" };
+
+
+            addTest.Evaluate(addInputs);
+            Console.WriteLine(String.Join(",", addInputs));
+
+            multTest.Evaluate(multInputs);
+            Console.WriteLine(String.Join(",", multInputs));
+        }
+
+
     }
 }

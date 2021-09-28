@@ -14,6 +14,13 @@ namespace Evaluator.Evaluation_Steps
             this.ValidOperators = new List<string> { "+" };
         }
 
+        /*
+         * Name:        Evaluate
+         * Inputs:      String array of input numbers and operators
+         * Outputs:     None
+         * Description: Evaluates any valid operator found in the input. Replacing the operator
+         *              and the numbers to it's left and right with the resulting value.
+         */
         override public void Evaluate(List<string> expression)
         {
             string val;
@@ -35,6 +42,12 @@ namespace Evaluator.Evaluation_Steps
             }
         }
 
+        /*
+         * Name:        PerformOperation
+         * Inputs:      String array of input numbers and operators, the index of the operator to evaluate
+         * Outputs:     The result of the operation as a string
+         * Description: Determines the operator at the provided index and evaluates it.
+         */
         override protected string PerformOperation(List<string> expression, int operIndex)
         {
             int left =  Int32.Parse(expression[operIndex - 1]);
