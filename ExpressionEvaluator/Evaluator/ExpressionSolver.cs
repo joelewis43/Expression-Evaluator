@@ -32,8 +32,6 @@ namespace Evaluator
          */
         public bool Evaluate(string[] input, out int result)
         {
-            Expression = new List<string>();
-
             bool retValue;
             string errorMsg;
             result = 0;
@@ -65,7 +63,7 @@ namespace Evaluator
 
             if (inputArray.Length == 0)
             {
-                errorMsg = "Missing expression input. Correct usage for example expression 4+12*(3+4):\n\tExpressionEvaluator.exe \"4 + 12 * (3 + 4)\" OR\n\tExpressionEvaluator.exe 4 + 12 * (3 + 4) OR\n\tExpressionEvaluator.exe 4+12*(3+4)";
+                errorMsg = "Missing expression input. Correct usage for example expression 4 + 12 * (3 + 4):\n\tExpressionEvaluator.exe \"4 + 12 * (3 + 4)\" OR\n\tExpressionEvaluator.exe 4 + 12 * (3 + 4)";
                 return false;
             }
             else if (inputArray.Length == 1)
@@ -74,7 +72,7 @@ namespace Evaluator
             }
             else
             {
-                // Join with spaces to prevent two numbers from being improperly joined
+                // Join with spaces to prevent numbers/operators from being improperly joined
                 inputString = String.Join(" ", inputArray);
             }
 
@@ -84,7 +82,19 @@ namespace Evaluator
 
             BuildExpressionList(inputString);
 
+#if DEBUG
+            Console.WriteLine("Expression: " + String.Join(",", Expression));
+#endif
+
             #region Validation
+
+            #region Expression Check
+            if (Expression.Count == 0)
+            {
+                errorMsg = "Invalid input! Input is not long enough.";
+                return false;
+            }
+            #endregion
 
             #region Parentheses Check
             // Check that all parentheses match in both count and placement order
@@ -139,7 +149,7 @@ namespace Evaluator
                 {
                     if (!lastCharWasInt) // current and last indices contain an operator
                     {
-                        errorMsg = "Invalid input! A number is missing. Please double check the input.";
+                        errorMsg = "Invalid input! A number or space is missing. Please double check the input.";
                         return false;
                     }
                     lastCharWasInt = false;
@@ -174,40 +184,45 @@ namespace Evaluator
          * Name:        BuildExpressionList
          * Inputs:      Validated string input consisting of numbers and operators
          * Outputs:     None
-         * Description: Converts the input into a List<string> for easy processing. Can't 
-         *              only use input.Split(" ") because numbers and parentheses won't be
-         *              space separated.
+         * Description: Converts the input into a List<string> for easy processing.
          */
         private void BuildExpressionList(string input)
         {
             // Create a list where each index is one value from the expression
             // { "(", "123", "+", "45", ")", "*", "3" }
 
-            // storage for a multidigit number
-            string currentNumber = String.Empty;
+            // (5 + 2) * (2 * -1)
+            // { "(", "5", "+", "2", ")", "*", "(", "2", "*", "-1")
 
-            foreach (char c in input)
+            string currentValue = String.Empty;
+
+            int i = 0;
+            string current;
+            Expression = new List<string>(input.Split(' '));
+
+            while (i < Expression.Count)
             {
-                if (char.IsDigit(c))
+                current = Expression[i];
+
+                if (current == "")
                 {
-                    currentNumber += c;
+                    Expression.RemoveAt(i);
+                    i--;
                 }
-                else // non digit
+                else if (current[0] == '(' && current.Length > 1)
                 {
-                    if (!currentNumber.Equals(String.Empty))
-                    {
-                        Expression.Add(currentNumber);
-                        currentNumber = String.Empty;
-                    }
-
-                    if (c.Equals(' ')) continue;
-
-                    Expression.Add(c.ToString());
-
+                    Expression.Insert(i, "(");
+                    Expression[i + 1] = current.Substring(1);
                 }
+                else if (current[current.Length - 1] == ')' && current.Length > 1)
+                {
+                    Expression.Insert(i, current.Substring(0, current.Length - 1));
+                    Expression[i + 1] = ")";
+                }
+
+
+                i++;
             }
-
-            if (!currentNumber.Equals(String.Empty)) Expression.Add(currentNumber);
         }
 
         /*
@@ -282,12 +297,12 @@ namespace Evaluator
                         value = ProcessExpression(expression.GetRange(first + 1, i - first - 1));
 
                         // now the value has to replace everything from first:i
-                        
+
                         // replace the value at i with the new value
                         expression[i] = value.ToString();
 
                         // remove all values from first : i-1
-                        for (int j = i-1; j >= first; j--) 
+                        for (int j = i - 1; j >= first; j--)
                         {
                             expression.RemoveAt(j);
 
@@ -322,7 +337,7 @@ namespace Evaluator
                 ValidOperators.AddRange(es.GetValidOperators());
             }
 
-            
+
         }
 
     }
