@@ -9,7 +9,11 @@ namespace ExpressionEvaluator
         {
             int result;
             ExpressionSolver oEvaluator = new ExpressionSolver();
-            oEvaluator.Evaluate(args, out result);
+            
+            if (oEvaluator.Evaluate(args, out result))
+            {
+                Console.WriteLine(String.Join(" ", args) + " = " + result);
+            }
         }
     }
 }
