@@ -33,13 +33,13 @@ Write a problem to evaluate arithmetic expressions. Input will be test expressio
 4. Add another line and put the expected result on it
 5. If the result is expected to fail or is invalid, put false as the expected result
 
-e.g.
-...
-(5+ 2)*(2 *- 1)
-false
-(5 + 2) * 8
-56
-((3 * 2) + 18) * (((2 + 1) * 6 + 4) + 20)
-1008
-<New-Expression>
-<Expression-Result>
+e.g.  
+...  
+(5+ 2)*(2 *- 1)  
+false  
+(5 + 2) * 8  
+56  
+((3 * 2) + 18) * (((2 + 1) * 6 + 4) + 20)  
+1008  
+<New-Expression>  
+<Expression-Result>  
