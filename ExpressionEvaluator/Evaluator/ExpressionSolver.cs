@@ -63,7 +63,9 @@ namespace Evaluator
 
             if (inputArray.Length == 0)
             {
-                errorMsg = "Missing expression input. Correct usage for example expression 4 + 12 * (3 + 4):\n\tExpressionEvaluator.exe \"4 + 12 * (3 + 4)\" OR\n\tExpressionEvaluator.exe 4 + 12 * (3 + 4)";
+                errorMsg = "Missing expression input.\n" +
+                    "Please make sure all input is space separated (parentheses can be adjacent to on another and to numbers)\n" +
+                    "Correct usage for example expression 4 + 12 * (3 + 4):\n\tExpressionEvaluator.exe \"4 + 12 * (3 + 4)\" OR\n\tExpressionEvaluator.exe 4 + 12 * (3 + 4)";
                 return false;
             }
             else if (inputArray.Length == 1)
@@ -218,6 +220,11 @@ namespace Evaluator
                 {
                     Expression.Insert(i, current.Substring(0, current.Length - 1));
                     Expression[i + 1] = ")";
+                    
+                    // current could contain more than one ')' so we decrement i
+                    // to check Expression[i] again, if there are no more ')'
+                    // we move on
+                    i--;
                 }
 
 
@@ -312,6 +319,10 @@ namespace Evaluator
                     }
                 }
             }
+
+#if DEBUG
+            Console.WriteLine("Processing " + String.Join("", expression));
+#endif
 
             foreach (EvaluationStep es in EvaluationSteps)
             {

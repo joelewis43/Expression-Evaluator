@@ -39,6 +39,9 @@ namespace Evaluator
 
                     expression.RemoveAt(i);
                     expression.RemoveAt(i - 1);
+
+                    // decrement to account for removing elements
+                    i--;
                 }
 
                 i++;
